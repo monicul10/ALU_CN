@@ -4,7 +4,7 @@ module rca8(
 	input wire [7:0] y,
 	input wire carry_in,
 	
-	output wire [8:0] z, // 9 biti
+	output wire [7:0] z, 
 	output wire carry_out
 );
 
@@ -26,7 +26,6 @@ for(i = 0; i < 8; i = i + 1) begin: vect
 end
 endgenerate
 
-assign z[8] = c[8]; 
 assign carry_out = c[8];
 
 endmodule		

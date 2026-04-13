@@ -6,7 +6,7 @@ module rca8_tb;
 	reg [7:0] y;
 	reg carry_in;
 
-	wire [8:0] z;
+	wire [7:0] z;
 	wire carry_out;
 
 rca8 uut(
