@@ -1,0 +1,34 @@
+`timescale 1 ns / 1 ps
+
+module cla8_tb;
+
+	reg [7:0] x;
+	reg [7:0] y;
+	reg c0;
+
+	wire [7:0] z;
+	wire carry_out;
+
+
+cla8 uut(
+	.x(x),
+	.y(y),
+	.c0(c0),
+	.z(z),
+	.carry_out(carry_out)
+);
+
+initial begin
+	$display("Time\t x\t y\t c0\t z\t cout");
+        $monitor("%0t\t %d\t %d\t %b\t %d\t %b", $time, x, y, c0, z, carry_out);
+
+	x = 8'd15; 
+	y = 8'd10;
+	c0 = 0;
+
+	#10;
+	$finish;
+
+end
+endmodule
+
