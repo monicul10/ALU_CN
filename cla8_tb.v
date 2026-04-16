@@ -19,8 +19,8 @@ cla8 uut(
 );
 
 initial begin
-	$display("Time\t x\t y\t c0\t z\t cout");
-        $monitor("%0t\t %d\t %d\t %b\t %d\t %b", $time, x, y, c0, z, carry_out);
+	$monitor("time=%0t | x=%d y=%d cin=%b | z=%d cout=%b", 
+                 $time, x, y, carry_in, z, carry_out);
 
 	x = 8'd15; 
 	y = 8'd10;
