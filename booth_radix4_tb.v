@@ -29,13 +29,13 @@ module booth_radix4_tb();
         #20;
 
         // Test: 12 * 5
-        x = 8'd12; y = 8'd5;
+        x = -8'd5; y = -8'd3;
         #10 start_op = 1;
         #10 start_op = 0;
 
         wait(done);
         #10;
-        $display("Rezultat final: %d", outbus);
+        $display("Rezultat final: %d", $signed(outbus));
         #50 $finish;
     end
 endmodule
