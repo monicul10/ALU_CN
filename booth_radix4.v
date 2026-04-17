@@ -39,7 +39,7 @@ module booth_radix4 (
     wire signed [8:0] sum_A2M = A + (M << 1);
     wire signed [8:0] sub_A2M = A - (M << 1);
 
-    always @(posedge clk or negedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             state <= S_IDLE;
             outbus <= 16'd0;
