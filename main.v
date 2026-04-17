@@ -54,18 +54,20 @@ cla_sub8 subtractor(
 .x(A), .y(Q),.z(w_diff), .borrow_out());
 
 booth_radix4 multiplier (
-.clk(clock), .rst(!reset),.start_op(start && (op == 2'b10)),.x(A), .y(Q),.outbus(w_prod), .done_all(m_done));
+.clk(clock), .rst(!reset),.start_op(start && (op == 2'b10)),.x(A), .y(Q),.outbus(w_prod), .done(m_done));
 
 restoring_division divider (
-.clk(clock), .rst(!reset),.start_op(start && (op == 2'b11)),.x(AQ_div), .y(Q),.outbus(w_quot), .done(d_done));
+.clk(clock), .rst(!reset),.start_op(start && (op == 2'b11)),.x(AQ_div), .y(y),.outbus(w_quot), .done(d_done));
 
-   
-assign result = {8'd0, w_sum}  | {8'd0, w_diff} | w_prod | w_quot;
 
-    
-assign ready = (opcode == 2'b00) ? 1'b1   : 
-               (opcode == 2'b01) ? 1'b1   : 
-               (opcode == 2'b10) ? m_done : 
-               (opcode == 2'b11) ? d_done : 1'b0;
+assign result = (op == 2'b00) ? {8'd0, w_sum}  :
+                (op == 2'b01) ? {8'd0, w_diff} :
+                (op == 2'b10) ? w_prod :
+                (op == 2'b11) ? w_quot : 16'd0;   
+
+assign ready = (op == 2'b00) ? 1'b1   : 
+               (op == 2'b01) ? 1'b1   : 
+               (op == 2'b10) ? m_done : 
+               (op == 2'b11) ? d_done : 1'b0;
 
 endmodule

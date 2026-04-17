@@ -1,0 +1,63 @@
+`timescale 1ns / 1ps
+
+module main_tb();
+
+reg [7:0] x;
+reg [7:0] y;
+reg [1:0] op;
+reg clock;
+reg reset;
+reg start;
+
+wire [15:0] result;
+wire ready;
+
+main uut(
+	.x(x),
+        .y(y),
+        .op(op),
+        .clock(clock),
+        .reset(reset),
+        .start(start),
+        .result(result),
+        .ready(ready)
+ );
+
+always #5 clock = ~clock;
+
+initial begin
+	clock = 0; reset = 1; start = 0; x = 0; y = 0; op = 2'b00;
+	#20 reset = 0;
+	#20;
+
+	x = 8'd25; y = 8'd15; op = 2'b00; // adunare
+        start = 1;
+        #10 start = 0;   
+        wait(ready); 
+        $display("Adunare: %d + %d = %d", x, y, result[7:0]);
+        #20;
+	
+	x = 8'd10; y = 8'd25; op = 2'b01;
+        start = 1; #10 start = 0;
+        wait(ready);
+        $display("Scadere: %d - %d = %0d", x, y, $signed(result[7:0]));
+        #20;
+
+	x = -8'd5; y = 8'd12; op = 2'b10;
+        start = 1; #10 start = 0;
+        wait(ready);
+        $display("Inmultire: %d * %d = %d", $signed(x), $signed(y), $signed(result));
+        #20;
+	
+	x = 8'h03; y = 8'hE8; op = 2'b11;
+        #5;       
+        y = 8'd7; 
+        start = 1; #10 start = 0;
+        wait(ready);
+        $display("Impartire: 1000 / 7 -> Quotient: %d, Remainder: %d", result[7:0], result[15:8]);
+        #20;
+	$finish;
+end
+endmodule
+
+	

@@ -8,19 +8,20 @@ module booth_radix4 (
     output reg done        
 );
 
-    // Conexiuni counter
-    wire [2:0] count_val;
-    wire cnt_done;
-    reg cnt_en, cnt_clr;
+  
+    wire [2:0] count_val; 
+    wire       step_done;
+    reg        cnt_en;
+    reg        cnt_clr;
 
-    counter my_counter (
+    counter custom_counter(
         .clock(clk),
         .reset(rst),
-        .enable(cnt_en),
+        .enable(cnt_en),   
         .clear(cnt_clr),
-        .mode(1'b0),     
+        .limit(3'd3),      
         .count(count_val),
-        .done(cnt_done)
+        .done(step_done)   
     );
 
     reg signed [8:0] A, M;
@@ -39,7 +40,7 @@ module booth_radix4 (
     wire signed [8:0] sub_A2M = A - (M << 1);
 
     always @(posedge clk or negedge rst) begin
-        if (!rst) begin
+        if (rst) begin
             state <= S_IDLE;
             outbus <= 16'd0;
             done <= 1'b0;
@@ -78,7 +79,7 @@ module booth_radix4 (
                     
                     // Verificăm dacă am terminat cele 4 iterații
                     // Verificăm count_val direct pentru a fi siguri de sincronizare
-                    if (count_val == 3'd3) 
+                    if (step_done) 
                         state <= S_DONE;
                     else 
                         state <= S_DECIDE;

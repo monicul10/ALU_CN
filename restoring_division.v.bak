@@ -13,10 +13,6 @@ module restoring_division(
     reg [7:0] Q;    
     reg [1:0] state;
 
-    localparam S_IDLE   = 2'd0,
-               S_PROC   = 2'd1,
-               S_DONE   = 2'd2;
-
     wire [2:0] count_val; 
     wire step_done;  
 
@@ -29,6 +25,10 @@ module restoring_division(
         .count(count_val),
         .done(step_done)          
     );
+
+    localparam S_IDLE   = 2'd0,
+               S_PROC   = 2'd1,
+               S_DONE   = 2'd2;
 
     // Calculam scaderea în avans
     // Shiftam A la stânga si aducem bitul cel mai semnificativ din Q
