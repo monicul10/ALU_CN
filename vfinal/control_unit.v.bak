@@ -1,0 +1,36 @@
+module control_unit (
+    input wire clk, rst, start,
+    input wire [1:0] op,
+    input wire m_done, d_done, 
+    output reg done,           
+    output reg c0, c_add, c_sub, c_m, c_d, c_out
+);
+    reg [3:0] state;
+    
+    localparam S_IDLE=0, S_INIT=1, S_ADD=2, S_SUB=3, S_MUL=4, S_DIV=5, S_FIN=6;
+
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            state <= S_IDLE;
+            {done, c0, c_add, c_sub, c_m, c_d, c_out} <= 7'b0;
+        end else begin
+            {done, c0, c_add, c_sub, c_m, c_d, c_out} <= 7'b0;
+            case (state)
+                S_IDLE: state <= S_INIT;
+                S_INIT: begin
+                    c0 <= 1; 
+                    if (op == 2'b00) state <= S_ADD;
+                    else if (op == 2'b01) state <= S_SUB;
+                    else if (op == 2'b10) state <= S_MUL;
+                    else if (op == 2'b11) state <= S_DIV;
+                end
+                S_ADD: begin c_add <= 1; state <= S_FIN; end
+                S_SUB: begin c_sub <= 1; state <= S_FIN; end
+                S_MUL: begin c_m <= 1; if (m_done) state <= S_FIN; end
+                S_DIV: begin c_d <= 1; if (d_done) state <= S_FIN; end
+                S_FIN: begin c_out <= 1; done <= 1; state <= S_IDLE; end
+                default: state <= S_IDLE;
+            endcase
+        end
+    end
+endmodule

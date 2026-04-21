@@ -1,0 +1,36 @@
+module main_tb();
+    reg clk, rst, start;
+    reg [1:0] op_sel;
+    reg signed [7:0] x, y;
+    wire [15:0] result;
+    wire done;
+
+    alu_main uut (clk, rst, start, op_sel, x, y, result, done);
+
+    always #5 clk = ~clk;
+
+    initial begin
+        clk = 0; rst = 1; start = 0;
+        x = 8'd10; y = 8'd3;
+        #20 rst = 0;
+
+        // Test Addition
+        #10 op_sel = 2'b00; start = 1;
+        #10 start = 0;
+        wait(done);
+
+        // Test Multiplication
+        #20 x = 8'd7; y = 8'd6;
+        op_sel = 2'b10; start = 1;
+        #10 start = 0;
+        wait(done);
+
+        // Test Division
+        #20 x = 8'd20; y = 8'd4;
+        op_sel = 2'b11; start = 1;
+        #10 start = 0;
+        wait(done);
+
+        #50 $finish;
+    end
+endmodule
