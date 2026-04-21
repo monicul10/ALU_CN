@@ -1,0 +1,73 @@
+module main (
+	input wire [7:0] x,       
+	input wire [7:0] y,         
+    	input wire [1:0] op, // 00-adunare, 01-scadere, 10-inmultire, 11-impartire
+    	input wire clock,
+    	input wire reset,     
+    	input wire start, // activ la inceperea calculului
+    
+    	output wire [15:0] result,  // output 16 biti
+    	output wire ready // activ la finalul calculului
+);
+
+reg [7:0]  A, Q;
+reg [15:0] AQ_div; // registru 16 biti pentru deimpartit
+
+always @(*) begin
+	
+A = 8'd0;
+Q = 8'd0;
+AQ_div = 16'd0;
+        
+case(op)
+
+	2'b00: begin // adunare
+		A = x; 
+		Q = y; 
+	 end   
+         2'b01: begin // scadere
+		A = x; 
+		Q = y; 
+	end  
+        2'b10: begin // inmultire
+		A = x; 
+		Q = y; 
+	end   
+            2'b11: begin // impartire
+		AQ_div = {x, y}; // x concatenat y
+	end  
+endcase
+    end
+
+   
+wire [7:0]  w_sum, w_diff;
+wire [15:0] w_prod, w_quot;
+wire m_done, d_done;
+
+// instantieri
+
+cla8 adder(
+.x(A), .y(Q), .c0(1'b0),.z(w_sum), .carry_out());
+
+    
+cla_sub8 subtractor(
+.x(A), .y(Q),.z(w_diff), .borrow_out());
+
+booth_radix4 multiplier (
+.clk(clock), .rst(!reset),.start_op(start && (op == 2'b10)),.x(A), .y(Q),.outbus(w_prod), .done(m_done));
+
+restoring_division divider (
+.clk(clock), .rst(!reset),.start_op(start && (op == 2'b11)),.x(AQ_div), .y(y),.outbus(w_quot), .done(d_done));
+
+
+assign result = (op == 2'b00) ? {8'd0, w_sum}  :
+                (op == 2'b01) ? {8'd0, w_diff} :
+                (op == 2'b10) ? w_prod :
+                (op == 2'b11) ? w_quot : 16'd0;   
+
+assign ready = (op == 2'b00) ? 1'b1   : 
+               (op == 2'b01) ? 1'b1   : 
+               (op == 2'b10) ? m_done : 
+               (op == 2'b11) ? d_done : 1'b0;
+
+endmodule
