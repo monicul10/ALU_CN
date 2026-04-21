@@ -5,7 +5,7 @@ module main_tb();
     wire [15:0] result;
     wire done;
 
-    main uut (clk, rst, start, op_sel, x, y, result, done);
+    alu_main uut (clk, rst, start, op_sel, x, y, result, done);
 
     always #5 clk = ~clk;
 

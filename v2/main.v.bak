@@ -1,0 +1,47 @@
+module main (
+    input wire [7:0] x, y,
+    input wire [1:0] op,
+    input wire clock, reset, start,
+    output reg [15:0] result,
+    output wire ready
+);
+    wire c0, c_add, c_sub, c_m, c_d, c_out;
+    wire m_done, d_done;
+    wire [7:0] w_sum, w_diff;
+    wire [15:0] w_prod, w_quot;
+
+    wire [7:0] A = (op == 2'b10) ? multiplier_inst.A[7:0] : (op == 2'b11) ? divider_inst.A[7:0] : 8'd0;
+    wire [7:0] Q = (op == 2'b10) ? multiplier_inst.Q[8:1] : (op == 2'b11) ? divider_inst.Q : 8'd0;
+    wire [7:0] M = y;
+
+    control_unit cu (
+        .clk(clock), .rst(reset), .start(start), .op(op),
+        .m_done(m_done), .d_done(d_done),
+        .done(ready), .c0(c0), .c_add(c_add), .c_sub(c_sub), .c_m(c_m), .c_d(c_d), .c_out(c_out)
+    );
+
+    cla8 adder_inst (.x(x), .y(y), .c0(1'b0), .z(w_sum), .carry_out()); 
+    cla_sub8 sub_inst (.x(x), .y(y), .z(w_diff), .borrow_out()); 
+
+    booth_radix4 multiplier_inst (
+        .clk(clock), .rst(reset || c0), .start_op(c_m), .x(x), .y(y),
+        .outbus(w_prod), .done(m_done) 
+    );
+
+    restoring_division divider_inst (
+        .clk(clock), .rst(reset || c0), .start_op(c_d), .x({x, y}), .y(y),
+        .outbus(w_quot), .done(d_done) 
+    );
+
+    always @(posedge clock or posedge reset) begin
+        if (reset) result <= 16'd0;
+        else if (ready) begin
+            case (op)
+                2'b00: result <= {8'd0, w_sum};
+                2'b01: result <= {8'd0, w_diff};
+                2'b10: result <= w_prod;
+                2'b11: result <= w_quot; 
+            endcase
+        end
+    end
+endmodule

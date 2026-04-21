@@ -10,9 +10,9 @@ module counter(
 	output wire done
 );
 
-always @(posedge clock or posedge reset) begin
+always @(posedge clock or negedge reset) begin
 
-	if (reset)
+	if (!reset)
 		count <= 3'b000;
 
 	else if (clear)

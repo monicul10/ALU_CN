@@ -1,0 +1,231 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/bianca/Documents/GitHub/ALU_CN/v2
+vac
+Z1 !s110 1776809424
+!i10b 1
+!s100 fOiOnQ8?LgmWOd39`Gm5=0
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IRN7;TGe[hXKfS;SVU7G9h1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z4 w1776351156
+8ac.v
+Fac.v
+!i122 0
+L0 1 16
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1776809424.000000
+!s107 ac.v|
+!s90 -reportprogress|300|ac.v|
+!i113 1
+Z7 tCvgOpt 0
+vbc
+R1
+!i10b 1
+!s100 7PDScSbJ1g>RMQQ:c9eal3
+R2
+IaC1FfSofe]XBk]EQGn2b>2
+R3
+R0
+R4
+8bc.v
+Fbc.v
+!i122 1
+L0 1 18
+R5
+r1
+!s85 0
+31
+R6
+!s107 bc.v|
+!s90 -reportprogress|300|bc.v|
+!i113 1
+R7
+vbooth_radix4
+Z8 !s110 1776809425
+!i10b 1
+!s100 a5LNY:UnZ_jBLaC;@93fP1
+R2
+IZ`NHILAWlNX@ifV;iQ9fW2
+R3
+R0
+w1776797160
+8booth_radix4.v
+Fbooth_radix4.v
+!i122 5
+L0 1 100
+R5
+r1
+!s85 0
+31
+R6
+!s107 booth_radix4.v|
+!s90 -reportprogress|300|booth_radix4.v|
+!i113 1
+R7
+vcla8
+R1
+!i10b 1
+!s100 zAQE;`OkXiId0M=Nng>9V2
+R2
+I1=Qj2LVPg94oH64:N[gGM3
+R3
+R0
+R4
+8cla8.v
+Fcla8.v
+!i122 2
+L0 1 44
+R5
+r1
+!s85 0
+31
+R6
+!s107 cla8.v|
+!s90 -reportprogress|300|cla8.v|
+!i113 1
+R7
+vcla_sub8
+R1
+!i10b 1
+!s100 E`fi:`[AiljjiR<XI^NLM2
+R2
+IjMSoR0Pn_OnNNlHWW4bUF1
+R3
+R0
+w1776354503
+8cla_sub8.v
+Fcla_sub8.v
+!i122 3
+L0 1 25
+R5
+r1
+!s85 0
+31
+R6
+!s107 cla_sub8.v|
+!s90 -reportprogress|300|cla_sub8.v|
+!i113 1
+R7
+vcontrol_unit
+R8
+!i10b 1
+!s100 >TgFbZd=P=`QkGoU4Nl9W1
+R2
+IB2ofRaYPgg?;A:L3z][Dm1
+R3
+R0
+w1776808066
+8control_unit.v
+Fcontrol_unit.v
+!i122 7
+L0 1 68
+R5
+r1
+!s85 0
+31
+Z9 !s108 1776809425.000000
+!s107 control_unit.v|
+!s90 -reportprogress|300|control_unit.v|
+!i113 1
+R7
+vcounter
+R1
+!i10b 1
+!s100 d^H;?9EX7Y06ScM43mQZc1
+R2
+IK9e2DYeU0g[2H8CD3QM>50
+R3
+R0
+w1776808981
+8counter.v
+Fcounter.v
+!i122 4
+L0 1 27
+R5
+r1
+!s85 0
+31
+R6
+!s107 counter.v|
+!s90 -reportprogress|300|counter.v|
+!i113 1
+R7
+vmain
+R8
+!i10b 1
+!s100 CcZL6hZn@3RF3ZDI>0h6=0
+R2
+IN`X;O05b:AjSfj243C[GT0
+R3
+R0
+w1776808210
+8main.v
+Fmain.v
+!i122 8
+L0 1 63
+R5
+r1
+!s85 0
+31
+R9
+!s107 main.v|
+!s90 -reportprogress|300|main.v|
+!i113 1
+R7
+vmain_tb
+R8
+!i10b 1
+!s100 jo]mde6><I?E14kQ26OBZ1
+R2
+IK0;3b0Ml^cOL5^_9>nJIL1
+R3
+R0
+w1776808346
+8main_tb.v
+Fmain_tb.v
+!i122 9
+L0 1 36
+R5
+r1
+!s85 0
+31
+R9
+!s107 main_tb.v|
+!s90 -reportprogress|300|main_tb.v|
+!i113 1
+R7
+vrestoring_division
+R8
+!i10b 1
+!s100 l8LFhJMVL;?IX0@KY:HT@1
+R2
+IL@KXEHn4Gz57mmnBIBfTW3
+R3
+R0
+w1776409018
+8restoring_division.v
+Frestoring_division.v
+!i122 6
+L0 1 86
+R5
+r1
+!s85 0
+31
+R9
+!s107 restoring_division.v|
+!s90 -reportprogress|300|restoring_division.v|
+!i113 1
+R7
