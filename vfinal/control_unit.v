@@ -12,7 +12,6 @@ module control_unit (
     output reg [2:0] state
 );
 
-    // Explicit states for each operation
     localparam S_IDLE = 3'd0,
                S_INIT = 3'd1,
                S_ADD  = 3'd2,
