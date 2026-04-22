@@ -9,7 +9,7 @@ module booth_radix4_tb();
     wire [15:0] outbus;
     wire done;
 
-    // Conectare explicit? prin nume (Port Mapping)
+
     booth_radix4 dut (
         .clk(clk),
         .rst(rst),
@@ -17,13 +17,13 @@ module booth_radix4_tb();
         .x(x),
         .y(y),
         .outbus(outbus),
-        .done(done)      // <--- Aici trebuie s? existe 'done' în booth_radix4.v
+        .done(done)  
     );
 
     always #5 clk = ~clk;
 
     initial begin
-        // Reset secven??
+        // Reset 
         clk = 0; rst = 0; start_op = 0; x = 0; y = 0;
         #20 rst = 1;
         #20;
