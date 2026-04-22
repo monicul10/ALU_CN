@@ -5,12 +5,14 @@ module main (
     input [1:0] op_sel,
     input signed [15:0] x, // operand de 16 biti pentru impartire
     input signed [7:0]  y, 
-    output reg [15:0] result,
+    output [15:0] result,
     output done
 );
 
     // registrii
     reg signed [7:0] A, Q, M; 
+
+    assign result = {A, Q};
 
     wire load_regs, start_mul, start_div, mul_done, div_done;
     wire [7:0] add_out, sub_out;
@@ -42,11 +44,19 @@ module main (
         end
         M <= y; 
     end
+    else if (done) begin
+            case (op_sel)
+                2'b00: {A, Q} <= {8'b0, add_out}; 
+                2'b01: {A, Q} <= {8'b0, sub_out};
+                2'b10: {A, Q} <= mul_out;      
+                2'b11: {A, Q} <= div_out;        
+            endcase
+        end
 end
 
    // instantieri de module
 
-    cla8 adder (.x(Q), .y(M), .c0(1'b0), .z(add_out), .carry_out());
+    cla8 adder (.x(Q), .y(M), .c0(op_sel[0]), .z(add_out), .carry_out());
 
     cla_sub8 sub_unit (.x(Q), .y(M), .z(sub_out), .borrow_out());
     
@@ -59,14 +69,4 @@ end
         .clk(clk), .rst(rst), .start_op(start_div),
         .x({A, Q}), .y(M), .outbus(div_out), .done(div_done)
     );
-
-    always @(*) begin
-        case (op_sel)
-            2'b00: result = {8'b0, add_out};
-            2'b01: result = {8'b0, sub_out};
-            2'b10: result = mul_out;
-            2'b11: result = div_out;
-            default: result = 16'b0;
-        endcase
-    end
 endmodule

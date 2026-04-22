@@ -33,6 +33,7 @@ module main_tb();
         wait(done);
 
         $display("[ADD] %d + %d = %d", x, y, result[7:0]);
+	@(posedge clk);
 
         // scadere (20 - 7)
         x = 16'd20; y = 8'd7; 
@@ -41,6 +42,7 @@ module main_tb();
 	#10 start = 0;
         wait(done);
         $display("[SUB] %d - %d = %d", x, y, result[7:0]);
+	@(posedge clk);
 
         // inmultire (7 * 6)
         x = 16'd7; y = 8'd6; 
@@ -49,6 +51,7 @@ module main_tb();
 	#10 start = 0;
         wait(done);
         $display("[MUL] %d * %d = %d", x, y, result);
+	@(posedge clk);
 
         // impartire (100 / 10)
         x = 16'd1000; y = 8'd10; 

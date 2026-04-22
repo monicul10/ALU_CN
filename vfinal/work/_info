@@ -10,7 +10,7 @@ z2
 cModel Technology
 Z0 dC:/Users/bianca/Documents/GitHub/ALU_CN/vfinal
 vac
-Z1 !s110 1776813052
+Z1 !s110 1776848176
 !i10b 1
 !s100 fOiOnQ8?LgmWOd39`Gm5=0
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -26,11 +26,11 @@ Z5 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z6 !s108 1776813052.000000
+!s108 1776848175.000000
 !s107 ac.v|
 !s90 -reportprogress|300|ac.v|
 !i113 1
-Z7 tCvgOpt 0
+Z6 tCvgOpt 0
 vbc
 R1
 !i10b 1
@@ -48,20 +48,20 @@ R5
 r1
 !s85 0
 31
-R6
+Z7 !s108 1776848176.000000
 !s107 bc.v|
 !s90 -reportprogress|300|bc.v|
 !i113 1
-R7
+R6
 vbooth_radix4
-R1
+Z8 !s110 1776848177
 !i10b 1
 !s100 H<z>RJY_on_AB1V0L;67d0
 R2
 I8NiYVhB=JFQKBi[B1KONo2
 R3
 R0
-w1776811915
+w1776847671
 8booth_radix4.v
 Fbooth_radix4.v
 !i122 5
@@ -70,11 +70,11 @@ R5
 r1
 !s85 0
 31
-R6
+Z9 !s108 1776848177.000000
 !s107 booth_radix4.v|
 !s90 -reportprogress|300|booth_radix4.v|
 !i113 1
-R7
+R6
 vcla8
 R1
 !i10b 1
@@ -92,11 +92,11 @@ R5
 r1
 !s85 0
 31
-R6
+R7
 !s107 cla8.v|
 !s90 -reportprogress|300|cla8.v|
 !i113 1
-R7
+R6
 vcla_sub8
 R1
 !i10b 1
@@ -114,35 +114,35 @@ R5
 r1
 !s85 0
 31
-R6
+R7
 !s107 cla_sub8.v|
 !s90 -reportprogress|300|cla_sub8.v|
 !i113 1
-R7
+R6
 vcontrol_unit
-Z8 !s110 1776813053
+R8
 !i10b 1
-!s100 Mm[NeI2`DF?`W;TzHJD7j1
+!s100 ?HnMdcKO1g?LjnK3oQ@E50
 R2
-I=hUHeiWQ33:N_D9VBEma52
+I<8[NZW`6^?nS0n<dY=0gC1
 R3
 R0
-w1776812783
+w1776815037
 8control_unit.v
 Fcontrol_unit.v
 !i122 7
-L0 1 82
+L0 1 81
 R5
 r1
 !s85 0
 31
-Z9 !s108 1776813053.000000
+R9
 !s107 control_unit.v|
 !s90 -reportprogress|300|control_unit.v|
 !i113 1
-R7
+R6
 vcounter
-R1
+R8
 !i10b 1
 !s100 d^H;?9EX7Y06ScM43mQZc1
 R2
@@ -158,20 +158,20 @@ R5
 r1
 !s85 0
 31
-R6
+R7
 !s107 counter.v|
 !s90 -reportprogress|300|counter.v|
 !i113 1
-R7
+R6
 vmain
 R8
 !i10b 1
-!s100 NHjCZHdHYnB7a`zUzd5MT0
+!s100 T<KgndZ3MG`7bcK@O@eL_1
 R2
-IPaIbkSgKd9mzooazdB<H73
+Ifm=5czW;J3AS;H^h]VmBU1
 R3
 R0
-w1776812847
+w1776847385
 8main.v
 Fmain.v
 !i122 8
@@ -184,20 +184,20 @@ R9
 !s107 main.v|
 !s90 -reportprogress|300|main.v|
 !i113 1
-R7
+R6
 vmain_tb
-R8
+!s110 1776848178
 !i10b 1
-!s100 @D;WWmIYC=M9TccMNBi1U2
+!s100 b;n9]o[DMJSk<Ih7>7OHT2
 R2
-ICWnlaPkdZ;DAD;OFT9H1U2
+IQhi1J34FdOHSPEijOk8Kf2
 R3
 R0
-w1776812863
+w1776848172
 8main_tb.v
 Fmain_tb.v
 !i122 9
-L0 1 63
+L0 1 66
 R5
 r1
 !s85 0
@@ -206,7 +206,7 @@ R9
 !s107 main_tb.v|
 !s90 -reportprogress|300|main_tb.v|
 !i113 1
-R7
+R6
 vrestoring_division
 R8
 !i10b 1
@@ -215,7 +215,7 @@ R2
 IL@KXEHn4Gz57mmnBIBfTW3
 R3
 R0
-w1776409018
+w1776842928
 8restoring_division.v
 Frestoring_division.v
 !i122 6
@@ -228,4 +228,4 @@ R9
 !s107 restoring_division.v|
 !s90 -reportprogress|300|restoring_division.v|
 !i113 1
-R7
+R6
